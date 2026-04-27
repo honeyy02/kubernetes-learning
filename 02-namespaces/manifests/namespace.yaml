@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+  labels:
+    env: development
+    team: backend
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: qa
+  labels:
+    env: qa
+    team: backend
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod
+  labels:
+    env: production
+    team: backend
+ 
+# ── How to apply ──────────────────────────────────────────
+# kubectl apply -f namespace.yaml
+#
+# ── Verify ────────────────────────────────────────────────
+# kubectl get namespaces
+#
+# ── Delete ────────────────────────────────────────────────
+# kubectl delete -f namespace.yaml
+# WARNING: deleting a namespace deletes EVERYTHING inside it
