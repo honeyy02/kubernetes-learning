@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-node-selector
+  labels:
+    app: demo
+spec:
+  # This pod will ONLY run on nodes with label env=production
+  nodeSelector:
+    env: production
+  containers:
+    - name: nginx
+      image: nginx:alpine
+      ports:
+        - containerPort: 80
+
+# ── How to use ────────────────────────────────────────────
+# Step 1: Label a node
+#   kubectl label node node01 env=production
+#
+# Step 2: Apply this pod
+#   kubectl apply -f pod-with-node-selector.yaml
+#
+# Step 3: Verify it landed on the right node
+#   kubectl get pod pod-with-node-selector -o wide
+#
+# Step 4: Cleanup
+#   kubectl delete pod pod-with-node-selector
